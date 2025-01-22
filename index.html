@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Adam's Spectacular Dev Profile</title>
+    <style>
+        body {
+            margin: 0;
+            height: 100vh;
+            font-family: 'Arial', sans-serif;
+            overflow: hidden;
+            background: linear-gradient(45deg, #ff6b6b, #4ecdc4);
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .letter {
+            position: absolute;
+            font-size: 20px;
+            color: white;
+            user-select: none;
+            pointer-events: none;
+        }
+        @keyframes shootUp {
+            0% { opacity: 0; transform: translateY(100vh); }
+            50% { opacity: 1; transform: translateY(50vh); }
+            100% { opacity: 0; transform: translateY(0); }
+        }
+        
+        .shooting {
+            animation: shootUp 2s linear;
+        }
+        
+        .falling {
+            animation: fallDown 5s linear infinite;
+        }
+
+        @keyframes fallDown {
+            0% { transform: translateY(0); }
+            100% { transform: translateY(100vh); }
+        }
+        .container {
+            perspective: 1000px;
+            overflow: hidden;
+        }
+        .card {
+            width: 80%;
+            max-width: 600px;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            box-shadow: 0 15px 30px rgba(0,0,0,0.2);
+            transform-style: preserve-3d;
+            animation: float 5s ease-in-out infinite;
+        }
+        .card-content {
+            padding: 40px;
+            text-align: center;
+        }
+        h1 {
+            font-size: 3em;
+            margin: 0;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+            animation: neon 3s ease-in-out infinite alternate;
+        }
+        .profile-pic {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            margin: 20px auto;
+            border: 3px solid white;
+        }
+        .bio {
+            font-size: 1.2em;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.3);
+        }
+        .skills {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-top: 20px;
+        }
+        .skill {
+            background: rgba(255, 255, 255, 0.2);
+            padding: 5px 10px;
+            border-radius: 20px;
+            font-size: 0.9em;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease;
+        }
+        .skill:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 6px 8px rgba(0,0,0,0.2);
+        }
+        .contact {
+            margin-top: 30px;
+        }
+        .contact a {
+            color: white;
+            text-decoration: none;
+            padding: 10px 20px;
+            background: rgba(255, 255, 255, 0.3);
+            border-radius: 50px;
+            transition: background 0.3s ease;
+        }
+        .contact a:hover {
+            background: rgba(255, 255, 255, 0.5);
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0) rotateX(0deg); }
+            50% { transform: translateY(-10px) rotateX(10deg); }
+        }
+        @keyframes neon {
+            from { text-shadow: 0 0 10px #fff, 0 0 20px #fff, 0 0 30px #ff6b6b, 0 0 40px #ff6b6b, 0 0 50px #ff6b6b, 0 0 60px #ff6b6b, 0 0 70px #ff6b6b; }
+            to { text-shadow: 0 0 20px #fff, 0 0 30px #4ecdc4, 0 0 40px #4ecdc4, 0 0 50px #4ecdc4, 0 0 60px #4ecdc4, 0 0 70px #4ecdc4, 0 0 80px #4ecdc4; }
+        }
+        @keyframes rotate {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="card" id="card">
+            <div class="card-content">
+                <img src="profile.jpg" alt="Adam's Profile Picture" class="profile-pic">
+                <h1>Adam Attali - Coding Maestro</h1>
+                <div class="bio">
+                    <p>Welcome to my digital universe! Here, we blend code with creativity, crafting solutions with a touch of magic. I specialize in PHP and Python, but my true passion lies in pushing the boundaries of what's possible.</p>
+                </div>
+                <div class="skills">
+                    <span class="skill">PHP</span>
+                    <span class="skill">Python</span>
+                    <span class="skill">Security</span>
+                    <span class="skill">SQL Wizardry</span>
+                    <span class="skill">Innovation</span>
+                    <span class="skill">Dad</span>
+                    <span class="skill">Linux</span>
+                </div>
+                <div class="contact">
+                    <a href="mailto:adam.attali@gmail.com">Connect with Magic</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const card = document.getElementById('card');
+
+            let animationRunning = true;
+
+            card.addEventListener('click', function() {
+                if (animationRunning) {
+                    card.style.animation = 'none';
+                } else {
+                    card.style.animation = '';
+                }
+                animationRunning = !animationRunning;
+            });
+        });
+        const letters = 'ABCDEFGHIJKLMNPQRSTUVWXYZ23456789';
+        const matrixLetters = '10';
+        
+        function randomLetter() {
+            return letters[Math.floor(Math.random() * letters.length)];
+        }
+
+        let lettersInterval;
+
+        function createLetter() {
+            const letter = document.createElement('div');
+            letter.textContent = randomLetter();
+            letter.className = 'letter shooting';
+            letter.style.left = `${Math.random() * window.innerWidth}px`;
+            document.body.appendChild(letter);
+
+            setTimeout(() => {
+                letter.className = 'letter falling';
+                setInterval(() => {
+                    letter.textContent = matrixLetters[Math.floor(Math.random() * matrixLetters.length)];
+                }, 100);
+                
+                setTimeout(() => {
+                    letter.remove();
+                }, 5000);
+            }, 2000);
+        }
+
+        function toggleLetters() {
+            if (lettersInterval) {
+                clearInterval(lettersInterval);
+                lettersInterval = null;
+            } else {
+                lettersInterval = setInterval(createLetter, 1000);
+            }
+        }
+
+        document.addEventListener('DOMContentLoaded', function() {
+            const card = document.getElementById('card');
+            let animationRunning = true;
+            toggleLetters();
+
+            card.addEventListener('click', function() {
+                if (animationRunning) {
+                    card.style.animation = 'none';
+                    card.style.transform = 'translateY(0px) rotateX(0deg)';
+                } else {
+                    card.style.animation = '';
+                }
+                animationRunning = !animationRunning;
+                toggleLetters();
+            });
+        });
+    </script>
+
+</body>
+</html>
