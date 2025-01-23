@@ -3,220 +3,218 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Adam's Spectacular Dev Profile</title>
+    <title>Adam's Magical Dev Realm</title>
     <style>
-        body {
-            margin: 0;
-            height: 100vh;
-            font-family: 'Arial', sans-serif;
-            overflow: hidden;
-            background: linear-gradient(45deg, #ff6b6b, #4ecdc4);
-            color: white;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-        .letter {
-            position: absolute;
-            font-size: 20px;
-            color: white;
-            user-select: none;
-            pointer-events: none;
-        }
-        @keyframes shootUp {
-            0% { opacity: 0; transform: translateY(100vh); }
-            50% { opacity: 1; transform: translateY(50vh); }
-            100% { opacity: 0; transform: translateY(0); }
-        }
-        
-        .shooting {
-            animation: shootUp 2s linear;
-        }
-        
-        .falling {
-            animation: fallDown 5s linear infinite;
+        :root {
+            --primary-magic: #6a11cb;
+            --secondary-magic: #2575fc;
+            --magical-gradient: linear-gradient(135deg, #6a11cb 0%, #2575fc 100%);
         }
 
-        @keyframes fallDown {
-            0% { transform: translateY(0); }
-            100% { transform: translateY(100vh); }
-        }
-        .container {
-            perspective: 1000px;
+        body {
+            font-family: 'Palatino Linotype', serif;
+            background: black;
+            color: white;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
             overflow: hidden;
+            perspective: 1000px;
         }
+
+        .magical-backdrop {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: -1;
+        }
+
         .card {
-            width: 80%;
-            max-width: 600px;
-            background: rgba(255, 255, 255, 0.1);
-            backdrop-filter: blur(10px);
+            background: rgba(0,0,0,0.7);
             border-radius: 20px;
-            box-shadow: 0 15px 30px rgba(0,0,0,0.2);
-            transform-style: preserve-3d;
-            animation: float 5s ease-in-out infinite;
-        }
-        .card-content {
+            border: 2px solid var(--primary-magic);
+            box-shadow: 0 0 50px rgba(106,17,203,0.5);
             padding: 40px;
             text-align: center;
+            transform-style: preserve-3d;
+            transition: all 0.5s;
+            width: 100%;
+            max-width: 500px;
+            position: relative;
+            overflow: hidden;
         }
-        h1 {
-            font-size: 3em;
-            margin: 0;
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
-            animation: neon 3s ease-in-out infinite alternate;
+
+        .card::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle at center, 
+                rgba(106,17,203,0.2) 0%, 
+                transparent 70%);
+            transform: rotate(45deg);
+            z-index: -1;
         }
+
         .profile-pic {
             width: 150px;
             height: 150px;
             border-radius: 50%;
-            margin: 20px auto;
-            border: 3px solid white;
-        }
-        .bio {
-            font-size: 1.2em;
-            text-shadow: 1px 1px 2px rgba(0,0,0,0.3);
-        }
-        .skills {
-            display: flex;
-            justify-content: center;
-            flex-wrap: wrap;
-            gap: 10px;
-            margin-top: 20px;
-        }
-        .skill {
-            background: rgba(255, 255, 255, 0.2);
-            padding: 5px 10px;
-            border-radius: 20px;
-            font-size: 0.9em;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-            transition: transform 0.3s ease;
-        }
-        .skill:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 6px 8px rgba(0,0,0,0.2);
-        }
-        .contact {
-            margin-top: 30px;
-        }
-        .contact a {
-            color: white;
-            text-decoration: none;
-            padding: 10px 20px;
-            background: rgba(255, 255, 255, 0.3);
-            border-radius: 50px;
-            transition: background 0.3s ease;
-        }
-        .contact a:hover {
-            background: rgba(255, 255, 255, 0.5);
+            border: 3px solid var(--secondary-magic);
+            object-fit: cover;
+            transition: all 0.5s;
+            transform: perspective(500px);
         }
 
-        @keyframes float {
-            0%, 100% { transform: translateY(0) rotateX(0deg); }
-            50% { transform: translateY(-10px) rotateX(10deg); }
+        h1 {
+            background: var(--magical-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            font-size: 2em;
+            margin-bottom: 15px;
+            text-shadow: 0 0 10px rgba(106,17,203,0.5);
         }
-        @keyframes neon {
-            from { text-shadow: 0 0 10px #fff, 0 0 20px #fff, 0 0 30px #ff6b6b, 0 0 40px #ff6b6b, 0 0 50px #ff6b6b, 0 0 60px #ff6b6b, 0 0 70px #ff6b6b; }
-            to { text-shadow: 0 0 20px #fff, 0 0 30px #4ecdc4, 0 0 40px #4ecdc4, 0 0 50px #4ecdc4, 0 0 60px #4ecdc4, 0 0 70px #4ecdc4, 0 0 80px #4ecdc4; }
+
+        .skills {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 10px;
+            margin: 20px 0;
         }
-        @keyframes rotate {
-            from { transform: rotate(0deg); }
-            to { transform: rotate(360deg); }
+
+        .skill {
+            background: rgba(106,17,203,0.5);
+            color: white;
+            padding: 5px 10px;
+            border-radius: 20px;
+            transition: all 0.3s;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .skill:hover {
+            transform: scale(1.1) rotate(5deg);
+        }
+
+        .contact a {
+            display: inline-block;
+            background: var(--magical-gradient);
+            color: white;
+            padding: 10px 20px;
+            text-decoration: none;
+            border-radius: 25px;
+            transition: all 0.3s;
+        }
+
+        .contact a:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 0 20px rgba(37,117,252,0.5);
         }
     </style>
 </head>
 <body>
-    <div class="container">
-        <div class="card" id="card">
-            <div class="card-content">
-                <img src="profile.jpg" alt="Adam's Profile Picture" class="profile-pic">
-                <h1>Adam Attali - Coding Maestro</h1>
-                <div class="bio">
-                    <p>Welcome to my digital universe! Here, we blend code with creativity, crafting solutions with a touch of magic. I specialize in PHP and Python, but my true passion lies in pushing the boundaries of what's possible.</p>
-                </div>
-                <div class="skills">
-                    <span class="skill">PHP</span>
-                    <span class="skill">Python</span>
-                    <span class="skill">Security</span>
-                    <span class="skill">SQL Wizardry</span>
-                    <span class="skill">Innovation</span>
-                    <span class="skill">Dad</span>
-                    <span class="skill">Linux</span>
-                </div>
-                <div class="contact">
-                    <a href="mailto:adam.attali@gmail.com">Connect with Magic</a>
-                </div>
-            </div>
+    <canvas class="magical-backdrop" id="magicCanvas"></canvas>
+    <div class="card" id="magicCard">
+        <img src="profile.jpg" alt="Wizard Developer" class="profile-pic" id="wizardPic">
+        <h1>Adam Attali - Code Wizard</h1>
+        <div class="bio">
+            <p>Conjuring digital spells with PHP, Python, and arcane programming rituals.</p>
+        </div>
+        <div class="skills">
+            <span class="skill">🔮 PHP Enchantments</span>
+            <span class="skill">🧙‍♂️ Python Sorcery</span>
+            <span class="skill">🛡️ Security Wards</span>
+            <span class="skill">💾 SQL Runes</span>
+            <span class="skill">🌐 Linux Realm</span>
+        </div>
+        <div class="contact">
+            <a href="mailto:adam.attali@gmail.com">Summon Connection</a>
         </div>
     </div>
+
     <script>
         document.addEventListener('DOMContentLoaded', function() {
-            const card = document.getElementById('card');
+            const canvas = document.getElementById('magicCanvas');
+            const ctx = canvas.getContext('2d');
+            const card = document.getElementById('magicCard');
+            const wizardPic = document.getElementById('wizardPic');
 
-            let animationRunning = true;
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
 
-            card.addEventListener('click', function() {
-                if (animationRunning) {
-                    card.style.animation = 'none';
-                } else {
-                    card.style.animation = '';
+            class MagicParticle {
+                constructor() {
+                    this.x = Math.random() * canvas.width;
+                    this.y = Math.random() * canvas.height;
+                    this.radius = Math.random() * 2;
+                    this.color = `rgba(106, 17, 203, ${Math.random()})`;
+                    this.speedX = (Math.random() - 0.5) * 2;
+                    this.speedY = (Math.random() - 0.5) * 2;
                 }
-                animationRunning = !animationRunning;
-            });
-        });
-        const letters = 'ABCDEFGHIJKLMNPQRSTUVWXYZ23456789';
-        const matrixLetters = '10';
-        
-        function randomLetter() {
-            return letters[Math.floor(Math.random() * letters.length)];
-        }
 
-        let lettersInterval;
+                update() {
+                    this.x += this.speedX;
+                    this.y += this.speedY;
 
-        function createLetter() {
-            const letter = document.createElement('div');
-            letter.textContent = randomLetter();
-            letter.className = 'letter shooting';
-            letter.style.left = `${Math.random() * window.innerWidth}px`;
-            document.body.appendChild(letter);
+                    if (this.x < 0 || this.x > canvas.width) this.speedX *= -1;
+                    if (this.y < 0 || this.y > canvas.height) this.speedY *= -1;
+                }
 
-            setTimeout(() => {
-                letter.className = 'letter falling';
-                setInterval(() => {
-                    letter.textContent = matrixLetters[Math.floor(Math.random() * matrixLetters.length)];
-                }, 100);
-                
-                setTimeout(() => {
-                    letter.remove();
-                }, 5000);
-            }, 2000);
-        }
-
-        function toggleLetters() {
-            if (lettersInterval) {
-                clearInterval(lettersInterval);
-                lettersInterval = null;
-            } else {
-                lettersInterval = setInterval(createLetter, 1000);
+                draw() {
+                    ctx.beginPath();
+                    ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
+                    ctx.fillStyle = this.color;
+                    ctx.fill();
+                }
             }
-        }
 
-        document.addEventListener('DOMContentLoaded', function() {
-            const card = document.getElementById('card');
-            let animationRunning = true;
-            toggleLetters();
+            let particles = Array.from({length: 100}, () => new MagicParticle());
 
-            card.addEventListener('click', function() {
-                if (animationRunning) {
-                    card.style.animation = 'none';
-                    card.style.transform = 'translateY(0px) rotateX(0deg)';
-                } else {
-                    card.style.animation = '';
-                }
-                animationRunning = !animationRunning;
-                toggleLetters();
+            function animate() {
+                ctx.clearRect(0, 0, canvas.width, canvas.height);
+                particles.forEach(p => {
+                    p.update();
+                    p.draw();
+                });
+                requestAnimationFrame(animate);
+            }
+
+            animate();
+
+            card.addEventListener('mousemove', function(e) {
+                const rect = card.getBoundingClientRect();
+                const centerX = rect.left + rect.width / 2;
+                const centerY = rect.top + rect.height / 2;
+
+                const mouseX = e.clientX - centerX;
+                const mouseY = e.clientY - centerY;
+
+                const rotateX = -mouseY / 20;
+                const rotateY = mouseX / 20;
+
+                card.style.transform = `rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale(1.02)`;
+            });
+
+            card.addEventListener('mouseleave', function() {
+                card.style.transform = 'rotateX(0deg) rotateY(0deg) scale(1)';
+            });
+
+            wizardPic.addEventListener('mouseenter', function() {
+                wizardPic.style.transform = 'perspective(500px) rotateY(20deg)';
+            });
+
+            wizardPic.addEventListener('mouseleave', function() {
+                wizardPic.style.transform = 'perspective(500px) rotateY(0deg)';
             });
         });
     </script>
-
 </body>
 </html>
